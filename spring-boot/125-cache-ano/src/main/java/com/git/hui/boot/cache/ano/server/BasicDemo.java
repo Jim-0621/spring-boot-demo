@@ -13,7 +13,7 @@ import java.util.UUID;
  * @date 2021/2/22
  */
 @Service
-public class       BasicDemo {
+public class BasicDemo {
     /**
      * 首先从缓存中查，查到之后，直接返回缓存数据；否则执行方法，并将结果缓存
      * <p>
