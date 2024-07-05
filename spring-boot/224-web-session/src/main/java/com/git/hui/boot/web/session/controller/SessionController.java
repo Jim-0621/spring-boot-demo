@@ -1,6 +1,9 @@
 package com.git.hui.boot.web.session.controller;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +31,18 @@ public class SessionController {
     public String login(String uname, HttpSession httpSession) {
         httpSession.setAttribute("name", uname);
         return "欢迎登录：" + uname;
+    }
+
+    @PostMapping("/api/login")
+    public ResponseEntity<String> loginNew(@RequestParam String uname, HttpSession httpSession) {
+        // 假设这里有身份验证逻辑
+        if (uname == null || uname.isEmpty()) {
+            return ResponseEntity.badRequest().body("用户名不能为空");
+        }
+
+        // 假设用户通过验证
+        httpSession.setAttribute("name", uname);
+        return ResponseEntity.ok("欢迎登录：" + uname);
     }
 
     @RequestMapping("time")
